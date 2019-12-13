@@ -9,7 +9,6 @@ public class Solution {
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	StringTokenizer st = new StringTokenizer(br.readLine());
     	String s = st.nextToken();
-    //	System.out.println(s);
     	br.close();
     	
     	 clubs = s.substring(s.indexOf("C"), s.indexOf("D"));
@@ -50,27 +49,25 @@ public class Solution {
     				switch (c) {
     				case 'A':
     					n += 4;
-    					//System.out.println("A added");
+
     					break;
     				case 'K':
     					n += 3;
-    				//	System.out.println("K added");
+
     					break;
     				case 'Q':
     					n+= 2;
-    					//System.out.println("Q added");
+
     					break;
     				case 'J':
     					n+= 1;
-    					//System.out.println("J added");
+
     					break;
     				default:
     					n = n+0;
     					break;
     				}
     			}
-    		
-    		
     		return n;
     	}
 }
