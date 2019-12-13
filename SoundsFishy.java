@@ -13,40 +13,22 @@ import java.util.Scanner;
  */
 public class SoundsFishy {
         public static void main(String args[]){
- /////////////////////////////////////////////////////////
+        
         Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
-        //String[] array = input.split(" ");
-        int count = 0;
-        boolean has = false;
+        int a  = in.nextInt();
+        int b  = in.nextInt();
+        int c  = in.nextInt();
+        int d  = in.nextInt();
         
-        for(int i = 0; i < input.length(); i++){
-            if(input.charAt(i) == ':' && input.charAt(i + 1) == '-' ){
-                if(input.charAt(i + 2) == ')'){
-                  count++;  
-                  has = true;
-                }else if(input.charAt(i + 2) == '('){
-                count--;
-                has = true;
-                }
-        }
-        
-        }
-        
-        if(count > 0){
-            System.out.println("happy");
-        }else if(count < 0){
-            System.out.println("sad");
-        }else if(count == 0 && has){
-            System.out.println("unsure");   
+        if(a < b && b < c && c < d){
+            System.out.println("Fish Rising");
+        }else if(a > b && b > c && c > d){
+            System.out.println("Fish Diving");
+        }else if(a == b && b == c && c == d){
+            System.out.println("Fish At Constant Depth");
         }else{
-            System.out.println("none");
+            System.out.println("No Fish");
         }
-            
-        
-        
-        
- /////////////////////////////////////////////////////////
-    
-}
+
+        }
 }
