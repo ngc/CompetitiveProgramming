@@ -1,0 +1,31 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args)throws java.io.IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String m = br.readLine();
+        char[] characters = m.toCharArray();
+        int upperCount = 0, lowerCount = 0, curr;
+     
+        for(int i = 0; i < m.length(); i++){
+            curr = (int)characters[i];
+            if(curr > 90){
+                lowerCount++;
+            }else if(curr > 64){
+                upperCount++;
+            }
+        }
+
+        if(upperCount > lowerCount){
+            System.out.println(m.toUpperCase());
+        }else if(lowerCount > upperCount){
+            System.out.println(m.toLowerCase());
+        }else{
+            System.out.println(m);
+        }
+ 
+    }
+  
+    
+}
