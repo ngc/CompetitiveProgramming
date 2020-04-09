@@ -16,6 +16,7 @@ int dfs(int x, int y, int distance){
 			return 0;
 		}
 		
+CCC '10 J5 - Knight Hop
 		distance++;
         if(valid(x+2, y+1)){
 			dfs(x+2,y+1,distance);
