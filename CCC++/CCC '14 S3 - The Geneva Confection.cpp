@@ -15,7 +15,7 @@ int main(){
 		int want = 1, temp;
 		bool flag = true;
 		stack<int> mountain;
-		vector<int> bb;
+		stack<int> bb;
 			   
 		for(int i = 0; i < n; i++){
 			cin >> temp;
@@ -28,12 +28,12 @@ int main(){
 				mountain.pop();
 				want++;
 				
-			}else if(!bb.empty() && bb.back() == want){
-				bb.pop_back();
+			}else if(!bb.empty() && bb.top() == want){
+				bb.pop();
 				want++;
 				
 			}else if(mountain.size() > 1){
-				 bb.push_back(mountain.top());
+				 bb.push(mountain.top());
 				mountain.pop();
 				
 			}else{
