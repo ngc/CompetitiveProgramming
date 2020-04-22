@@ -1,0 +1,25 @@
+#include <iostream>
+#include <climits>
+
+using namespace std;
+
+int main() {
+  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	string team; 
+	int a, b, c, d, e, t;
+	double ba; 
+	cout << "2011 Regular Season\n====================\n";
+	getline(cin, team);
+	for(int i = 0; i < 10; i++){
+		cin >> team >> t >> e >> t >> a >> b >> c >> d;
+		cout << a << ":" << e << "\n";
+		ba = a * 1.000000 / e; 
+		cout << team << ": " << to_string(ba).substr(1, 4) << " ";
+		a -= b + c;
+		ba = ((a + (2 * b) + (3 * c) + (4 * d)) * 1.00000)/e;
+		cout << to_string(ba).substr(1, 4) << "\n";
+		
+	}
+	cout << "====================\n";
+		
+  }
