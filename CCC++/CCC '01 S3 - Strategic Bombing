@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool visited[26] = {false};
+bool activate[26][26] = {false};
+stack<pair<int, int>> edg;
+vector<string> graph;
+
+void bfs(int A){
+	 queue<int> q;
+	 visited[A] = true; q.push(A);
+	  while(!q.empty()){
+		  int front = q.front(); q.pop();
+		  for(int f = 0; f < 26; f++){
+			if(activate[front][f] && front != f && !visited[f]) {q.push(f); visited[f] = true;}
+		  }  
+	  }
+}
+
+int main() {
+  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+  int c = 0, t = 0;
+  string in; 
+  while(true){
+	  cin >> in;
+	  if(in == "**"){
+		  break;
+	  }
+	  graph.push_back(in);
+	  activate[in[0] - 65][in[1] - 65] = true;
+	  activate[in[1] - 65][in[0] - 65] = true;
+	  edg.push(make_pair(in[0] - 65, in[1] - 65));
+	  
+  }
+  
+	while(!edg.empty()){
+	  t++;
+	  activate[edg.top().first][edg.top().second] = false;
+	  activate[edg.top().second][edg.top().first] = false;
+	  bfs('A' - 65);
+	  if(!visited['B' - 65]){
+			  cout << graph[t] << "\n";
+			  c++;
+		}
+	  for(int x = 0; x < 26; x++){
+		  visited[x] = false;
+	  }
+	  activate[edg.top().first][edg.top().second] = true;
+	  activate[edg.top().second][edg.top().first] = true;
+	  edg.pop();
+  }
+  cout << "There are " << c << " disconnecting roads.\n"; 
+  
+  
+  return 0;
+}
