@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string handle(string line, int z){
+	
+	if(line[z] <= 57 && line[z] >= 48){
+		return "Yes! ";
+	}
+	
+	switch(line[z]){
+		
+		case 'A':
+		case 'a':
+			return "Hi! ";
+			break;
+			
+		case 'E':
+		case 'e':
+			return "Bye! ";
+			break;
+		
+		case 'I':
+		case 'i':
+			return "How are you? ";
+			break;
+		
+		case 'O':
+		case 'o':
+			return "Follow me! ";
+			break;
+		
+		case 'U':
+		case 'u':
+			return "Help! ";
+			break;
+	}
+		
+	return "";
+	
+}
+
+int main() {
+	  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	  
+	  int n; 
+	  cin >> n; 
+	  string line;
+	  for(int i = 0; i < n; i++){
+		  cin >> line;
+		  for(int z = 0; z < line.length(); z++){
+			 cout << handle(line, z);
+		  }
+		  cout << "\n";
+	  }
+	  
+	  return 0;
+  }
