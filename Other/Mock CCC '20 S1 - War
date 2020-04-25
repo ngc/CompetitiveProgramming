@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+	  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+		bool flag = false;
+		int n, t;
+		cin >> n;
+		
+		stack<int> arr1;
+		stack<int> arr2;
+		
+	  for(int i = 0; i < n; i++){
+		  cin >> t;
+		  arr1.push(t);
+	  }
+	  
+	  for(int i = 0; i < n; i++){
+		  cin >> t;
+		  arr2.push(t);
+	  }
+	  t = 0;
+	  for(int i = 0; i < n; i++){
+		  if(arr1.top() - arr2.top() == 0 && !flag){
+			  t++;
+			  flag = true;
+		  }else if(arr1.top() - arr2.top() != 0){
+			  flag = false;
+		  }
+		  arr1.pop();
+		  arr2.pop();
+	  }
+	  
+	  
+	  cout << t;
+	  return 0;
+  }
