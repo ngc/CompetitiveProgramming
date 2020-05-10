@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long LL; 
+typedef pair<int, int> pii; 
+typedef pair<LL, LL> pll; 
+typedef pair<string, string> pss; 
+typedef vector<int> vi; 
+typedef vector<vi> vvi; 
+typedef vector<pii> vii; 
+typedef vector<LL> vl; 
+typedef vector<vl> vvl;
+
+int main(){
+	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	string a;
+	cin >> a;
+	int c = 0;
+	int arr[a.length()];
+	bool zeroflag = false;
+	
+	for(int i = 0; i <  a.length(); i++){
+		c += a[i] - '0';
+		arr[i] = a[i] - '0';
+		if(a[i] == '0') zeroflag = true;
+		
+	}
+	
+	if(!zeroflag || c % 3 != 0){
+		cout << "-1\n";
+		return 0;
+	}else{
+		sort(arr, arr + a.length());
+		for(int i = 0; i < a.length(); i++){
+			cout << arr[a.length() - i - 1];
+		}
+		cout << "\n";
+	}
+
+	return 0;
+}
