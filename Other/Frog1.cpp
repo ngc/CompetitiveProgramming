@@ -18,32 +18,25 @@ typedef stack<char> sc;
 #define S second
 #define PB push_back
 
-int costs[1000001];
-int dp[1000001];
-
-int frog(int i, int n){
-	if(i == n) return dp[i] = 0;
-	if(dp[i] != -1) return dp[i];
-	int cost = abs(costs[i] - costs[i + 1]) + frog(i+1, n);
-	if(i + 2 <= n){
-		cost = min(cost, abs(costs[i] - costs[i+2]) + frog(i + 2, n));
-	}
-	
-	return dp[i] = cost;
-}
+int stones[100000] = {0};
+int costs[100000];
 
 int main(){
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 	int n;
 	cin >> n;
-	for(int i = 1; i <= n; i++){
+	
+	for(int i = 0; i < n; i++){
 		cin >> costs[i];
-	} //cost for a jump = abs(h.i - h.j)
-	  //find minimum cost
-
-	memset(dp, -1, sizeof(dp));
-	cout << frog(1, n);
-
+	}
+	
+	stones[1] = abs(costs[1] - costs[0]);
+	for(int i = 2; i < n; i++){
+		stones[i] = min(abs(costs[i - 1] - costs[i]) + stones[i - 1], abs(costs[i - 2] - costs[i]) + stones[i - 2]);
+	}
+    cout << stones[n - 1];
+    cout << "\n";
+    
     return 0;
 }
