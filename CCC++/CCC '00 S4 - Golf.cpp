@@ -18,39 +18,41 @@ typedef stack<char> sc;
 #define S second
 #define PB push_back
 
-int calculate(int distance, int clubCount, int clubs[]){
-	int dp[5281] = {0};
-	for(int i = 1; i <= distance; i++){
-      int lowest = INT_MAX;
-      for(int j = 0; j < clubCount; j++){
-        if(i - clubs[j] >= 0 && dp[i - clubs[j]] >= 0){
-          if(dp[i - clubs[j]] < lowest) lowest = dp[i - clubs[j]];
-        }
-      }
-      if(lowest != INT_MAX){
-        dp[i] = lowest + 1;
-      }else{
-        dp[i] = INT_MIN;
-      }
-    }
-    return dp[distance];
+int clubs[32];
+int strokes[5281] = {-1};
+int dist = 0;
+int clubcount = 0;
+
+int calculate(int a){
+	if(strokes[a] != -1) return strokes[a];
+	int lowest = INT_MAX;
+	for(int j = 0; j < clubcount; j++){
+		if(a - clubs[j] >= 0){
+			int calc = calculate(a - clubs[j]);
+			if(calc >= 0) lowest = min(lowest, calc);
+		}
+	}
+	
+	if(lowest != INT_MAX){
+		return strokes[a] = lowest + 1;
+	}else{
+		return strokes[a] = -2;
+	}
+	
 }
 
 int main(){
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	int clubs[33];
-	int clubCount, distance;
-    
-    cin >> distance >> clubCount;
-    
-    for(int i = 0; i < clubCount; i++){
-      cin >> clubs[i];
-    }
-    
-    int ans = calculate(distance, clubCount, clubs);
-    
-    cout << ((ans == INT_MIN) ? "Roberta acknowledges defeat.\n" : "Roberta wins in " + to_string(ans) + " strokes.\n"); 
-
-
-    return 0;
+	cin >> dist >> clubcount;
+	memset(strokes, INT_MAX, sizeof(strokes));
+	
+	for(int i = 0; i < clubcount; i++){
+		cin >> clubs[i];
+		strokes[clubs[i]] = 1;
+	}
+	
+	int ans = calculate(dist);
+	cout << (ans <= -1 ? "Roberta acknowledges defeat." : "Roberta wins in " + to_string(ans) + " strokes.") << "\n";
+	
+	return 0;
 }
