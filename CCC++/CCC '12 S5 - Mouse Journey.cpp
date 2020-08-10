@@ -17,33 +17,35 @@ typedef stack<char> sc;
 #define F first
 #define S second
 #define PB push_back
-int board[26][26];
-int r, c;
-int search(int x, int y){
-	if(x > r || y > c) return 0;
-	if(board[x][y] != -1) return board[x][y];
-	board[x][y] = search(x + 1, y) + search(x, y + 1);
-	return board[x][y];
+
+int board[26][26] = {0};
+
+int calculate_paths(int r, int c){
+	if(r < 0 || c < 0) return 0;
+	if(board[r][c] > 0) return board[r][c];
+	if(board[r][c] == -1) return 0;
+	return board[r][c] = calculate_paths(r - 1, c) + calculate_paths(r, c - 1); 	
 }
 
 int main(){
 	ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-	int k, t1, t2;
-	cin >> r >> c >> k;
-	
+	/* Can move either right or down, no diagonal movements
+		Start at (1, 1)
+		Goal: (R, C)
+		Cannot pass through cages containing cats
+		Compute the number of possible paths (cat free paths) from (1, 1) to (R, C)
+	*/
 
-	memset(board, -1, sizeof(board));
-	board[r][c] = 1;
-	//bool hascat[r][c];
-	//memset(hascat, false, sizeof(hascat));
+	int r, c, cat_count, x, y;
+	cin >> r >> c >> cat_count;
 	
-	for(int i = 0; i < k; i++){
-		cin >> t1 >> t2;
-		board[t1][t2] = 0;
+	for(int i = 0; i < cat_count; i++){
+		cin >> x >> y;
+		board[x - 1][y - 1] = -1;
 	}
+	board[0][0] = 1;
 
-	cout << search(1, 1);
-
-    return 0;
+	cout << calculate_paths(r - 1, c - 1);
+	return 0;
 }
